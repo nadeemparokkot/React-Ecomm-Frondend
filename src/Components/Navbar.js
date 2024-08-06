@@ -26,9 +26,6 @@ const Navbar = () => {
         } else {
             return (
                 <>
-                    <li className="nav-item active">
-                        <NavLink className="nav-link" to="/">HOME <span className="sr-only">(current)</span></NavLink>
-                    </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/login">LOGIN</NavLink>
                     </li>
