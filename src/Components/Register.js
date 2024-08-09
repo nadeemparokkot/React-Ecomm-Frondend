@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import '../Register.css'; // Import the custom CSS file for Register
 
 const Register = () => {
-    const navigate = useNavigate(); // Replace useHistory with useNavigate
+    const navigate = useNavigate();
 
     const [user, setUser] = useState({
         companyName: "", email: "", phone: "", password: "", cpassword: ""
@@ -36,67 +37,102 @@ const Register = () => {
             localStorage.setItem('token', data.token);
             window.alert("Registration Successful");
 
-            navigate('/'); // Use navigate instead of history.push
-            window.location.reload();
-
+            navigate('/'); 
         } else {
             window.alert("Registration Failed");
         }
     };
 
     return (
-        <>
-            <section>
-                <div className="container mt-5">
-                    <div className='row'>
-                        <div className='col-12 col-md-7 col-sm-6'>
-                            <h1 className='mt-5'>
-                                Welcome!
-                            </h1>
-                        </div>
-
-                        <div className="col-12 col-md-5 col-sm-6">
-                            <form method='POST'>
+        <section className="register-section">
+            <div className="container mt-5">
+                <div className='row'>
+                    <div className="col-12 col-md-6 offset-md-3">
+                        <div className="register-card">
+                            <h2 className="register-heading">Register</h2>
+                            <form onSubmit={PostData}>
                                 <div className="form-group">
                                     <label htmlFor="companyName">Company Name</label>
-                                    <input type="text" className="form-control" id="companyName" name="companyName" value={user.companyName} onChange={handleInputs}
-                                        placeholder="Enter your name" />
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="companyName"
+                                        name="companyName"
+                                        value={user.companyName}
+                                        onChange={handleInputs}
+                                        placeholder="Enter your company name"
+                                        required
+                                    />
                                 </div>
 
                                 <div className="form-group">
                                     <label htmlFor="email">Email</label>
-                                    <input type="email" className="form-control" id="email" name="email" value={user.email} onChange={handleInputs}
-                                        placeholder="Enter your Email" />
+                                    <input
+                                        type="email"
+                                        className="form-control"
+                                        id="email"
+                                        name="email"
+                                        value={user.email}
+                                        onChange={handleInputs}
+                                        placeholder="Enter your Email"
+                                        required
+                                    />
                                 </div>
 
                                 <div className="form-group">
                                     <label htmlFor="phone">Phone No.</label>
-                                    <input type="tel" className="form-control" id="phone" name="phone" value={user.phone} onChange={handleInputs}
-                                        placeholder="Enter your Phone No." />
+                                    <input
+                                        type="tel"
+                                        className="form-control"
+                                        id="phone"
+                                        name="phone"
+                                        value={user.phone}
+                                        onChange={handleInputs}
+                                        placeholder="Enter your Phone No."
+                                        required
+                                    />
                                 </div>
 
                                 <div className="form-group">
                                     <label htmlFor="password">Password</label>
-                                    <input type="password" className="form-control" id="password" name="password" value={user.password} onChange={handleInputs}
-                                        placeholder="Enter your Password" />
+                                    <input
+                                        type="password"
+                                        className="form-control"
+                                        id="password"
+                                        name="password"
+                                        value={user.password}
+                                        onChange={handleInputs}
+                                        placeholder="Enter your Password"
+                                        required
+                                    />
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="cpassword">Confirm password</label>
-                                    <input type="password" className="form-control" id="cpassword" name="cpassword" value={user.cpassword} onChange={handleInputs}
-                                        placeholder="Confirm password" />
+                                    <label htmlFor="cpassword">Confirm Password</label>
+                                    <input
+                                        type="password"
+                                        className="form-control"
+                                        id="cpassword"
+                                        name="cpassword"
+                                        value={user.cpassword}
+                                        onChange={handleInputs}
+                                        placeholder="Confirm your Password"
+                                        required
+                                    />
                                 </div>
-                                <NavLink to='/login'>Already Registered, then Login here!</NavLink><br /><br />
-                                <button type="submit" className="btn btn-primary" id='register' name='register' onClick={PostData}>Register</button>
-
+                                <NavLink to='/login' className="register-link">Already registered? Login here!</NavLink><br /><br />
+                                <button
+                                    type="submit"
+                                    className="btn btn-custom"
+                                >
+                                    Register
+                                </button>
                             </form>
                         </div>
-
                     </div>
-
                 </div>
-            </section>
-        </>
+            </div>
+        </section>
     );
 }
 
